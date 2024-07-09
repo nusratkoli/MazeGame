@@ -1,7 +1,8 @@
-package MazeGame;
+  package MazeGame;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class View extends JFrame{
 
 				};
 	private final List<Integer>path = new ArrayList<Integer>();
+	private int pathIndex;
 	
 	
 	
@@ -35,6 +37,7 @@ public class View extends JFrame{
 	  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	  
 	  DepthFirst.searchPath(maze, 1, 1, path);
+	  pathIndex=path.size() -2;
 	  System.out.println(path);
 	  
 	  
@@ -54,18 +57,49 @@ public class View extends JFrame{
 			  }
 			  g.setColor(color);
 			  g.fillRect(30*col, 30*row, 30,30);
-			  g.setColor(color.BLACK);
+			  g.setColor(Color.BLACK);
 			  g.drawRect(30*col, 30*row, 30,30);
 			  
 		  }
 	  }
+	  
 	  for (int p =0;p<path.size(); p+=2) {
 		  int pathX =path.get(p);
 		  int pathY =path.get(p+1);
 		  g.setColor(Color.GREEN);
-		  g.fillRect(pathX*30, pathY*30, 30, pathY);
+		  g.fillRect(pathX*15, pathY*15, 15, 15);
 	  }
+	  
+	  int pathX = path.get(pathIndex);
+	  int pathY = path.get(pathIndex +1);
+	  g.setColor(Color.RED);
+	  g.fillOval(pathX*15, pathY*15, 15, 15);
+	  
+	  
   }
+  protected void processKeyEvent(KeyEvent ke) {
+	  if (ke.getID() != KeyEvent.KEY_PRESSED) {
+		  return;
+	  }
+	  if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
+		  pathIndex -= 2;
+		  if (pathIndex <0) {
+			  pathIndex =0;
+		  }
+		  
+	    }
+	  else if (ke.getKeyCode()== KeyEvent.VK_LEFT) {
+		  pathIndex +=2;
+		  if (pathIndex> path.size()-2) {
+			  pathIndex = path.size() - 2;
+		  }
+	  }
+	  repaint();
+	  }
+  
+  
+  
+  
   public static void main(String[]args) {
 	  SwingUtilities.invokeLater(new Runnable(){
 		  public void run() {

@@ -28,9 +28,9 @@ public class DepthFirst {
 			 path.add(y);
 			 return true;
 	 }
-		 int dx2 =0;
-		 int dy2 = 1;
-		 if (searchPath(maze,x+dx2,y+dy2,path)) {
+		 int dx11 =0;
+		 int dy11 = 1;
+		 if (searchPath(maze,x+dx11,y+dy11,path)) {
 			 path.add(x);
 			 path.add(y);
 			 return true;
