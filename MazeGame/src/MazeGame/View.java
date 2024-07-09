@@ -20,7 +20,7 @@ public class View extends JFrame{
 				  {1,0,1,0,1,1,1,0,1,0,0,0,1},
 				  {1,0,1,0,1,0,0,0,1,1,1,0,1},
 				  {1,0,1,0,1,1,1,0,1,0,1,0,1},
-				  {1,0,0,0,0,0,0,0,0,0,1,0,1},
+				  {1,0,0,0,0,0,0,0,0,0,1,9,1},
 				  {1,1,1,1,1,1,1,1,1,1,1,1,1}
 
 				};
@@ -47,27 +47,27 @@ public class View extends JFrame{
 	  
 	  g.translate(50, 50);
 	  
-	  for (int row=0;row<maze.length;row++) {
-		  for (int col=0; col<maze[0].length;col++) {
+	  for (int row = 0 ; row < maze.length; row++) {
+		  for (int col= 0 ; col < maze[0].length;col++) {
 			  Color color;
 			  switch (maze[row][col]) {
-			  case 1 : color=Color.BLACK;break;
-			  case 9 : color=Color.RED;break;
+			  case 1 : color=Color.BLACK; break;
+			  case 9 : color=Color.RED; break;
 			  default: color=Color.WHITE;
 			  }
 			  g.setColor(color);
-			  g.fillRect(30*col, 30*row, 30,30);
+			  g.fillRect(15 * col, 15 * row, 15,15);
 			  g.setColor(Color.BLACK);
-			  g.drawRect(30*col, 30*row, 30,30);
+			  g.drawRect(15 * col, 15 * row, 15,15);
 			  
 		  }
 	  }
 	  
-	  for (int p =0;p<path.size(); p+=2) {
+	  for (int p = 0 ; p < path.size(); p += 2) {
 		  int pathX =path.get(p);
 		  int pathY =path.get(p+1);
 		  g.setColor(Color.GREEN);
-		  g.fillRect(pathX*15, pathY*15, 15, 15);
+		  g.fillRect(pathX * 15, pathY * 15, 15, 15);
 	  }
 	  
 	  int pathX = path.get(pathIndex);
@@ -83,14 +83,14 @@ public class View extends JFrame{
 	  }
 	  if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
 		  pathIndex -= 2;
-		  if (pathIndex <0) {
-			  pathIndex =0;
+		  if (pathIndex < 0) {
+			  pathIndex = 0;
 		  }
 		  
-	    }
-	  else if (ke.getKeyCode()== KeyEvent.VK_LEFT) {
+	   }
+	      else if (ke.getKeyCode()== KeyEvent.VK_LEFT) {
 		  pathIndex +=2;
-		  if (pathIndex> path.size()-2) {
+		  if (pathIndex > path.size() - 2) {
 			  pathIndex = path.size() - 2;
 		  }
 	  }
